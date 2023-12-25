@@ -7,7 +7,7 @@ const ImageGenerator = () => {
     let inputRef = useRef(null);
 
     const [loading, setLoading] = useState(false);
-
+    
     const ImageGenerator = async () =>{
         if(inputRef.current.value===""){
             return 0;
@@ -20,7 +20,7 @@ const ImageGenerator = () => {
                 headers:{
                     "Content-Type":"application/json",
                     Authorization:
-                    "Bearer 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",
+                    "Bearer",
                     "User-Agent":"Chrome",
                 },
                 body:JSON.stringify({
@@ -31,7 +31,6 @@ const ImageGenerator = () => {
             }
         );
         let data = await response.json();
-        console.log(data);
         let data_array = data.data;
         setImage_url(data_array[0].url);
         setLoading(false);
@@ -44,7 +43,7 @@ const ImageGenerator = () => {
             <div className='image'>
                 <img src={image_url==="/"?image:image_url} alt=""></img>
             </div>
-            <div className='loading'>
+            <div className='loading'>   
                 <div className={loading ? "loading-bar-full":"loading-bar"}></div>
                 <div className={loading ? "loading-text" : "display-none"}>Loading...</div>
             </div>
