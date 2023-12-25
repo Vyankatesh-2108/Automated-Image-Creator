@@ -20,7 +20,7 @@ const ImageGenerator = () => {
                 headers:{
                     "Content-Type":"application/json",
                     Authorization:
-                    "Bearer",
+                    "Bearer ",
                     "User-Agent":"Chrome",
                 },
                 body:JSON.stringify({
@@ -31,6 +31,7 @@ const ImageGenerator = () => {
             }
         );
         let data = await response.json();
+        console.log(data);
         let data_array = data.data;
         setImage_url(data_array[0].url);
         setLoading(false);
@@ -43,14 +44,14 @@ const ImageGenerator = () => {
             <div className='image'>
                 <img src={image_url==="/"?image:image_url} alt=""></img>
             </div>
-            <div className='loading'>   
+            <div className='loading'>
                 <div className={loading ? "loading-bar-full":"loading-bar"}></div>
                 <div className={loading ? "loading-text" : "display-none"}>Loading...</div>
             </div>
         </div>
         <div className='search-box'>
-            <input type='text' ref={inputRef} className='search-input' placeholder='Describe what you want to see ?'></input>
-            <div className='generate-btn' onClick={()=>{ImageGenerator()}}>Generate</div>
+            <input type='text' ref={inputRef} className='search-input' placeholder='Describe what you want to see...'></input>
+            <div className='generate-btn' onClick={()=>{ImageGenerator()}}>CREATE</div>
         </div>
     </div>
   )
